@@ -15,6 +15,8 @@ const {
 } = require('./src/solanaUtils');
 
 const { displayHeader, getNetworkTypeFromUser } = require('./src/displayUtils');
+const { Keypair } = require('@solana/web3.js');
+const { getPublicKey } = require('ed25519-hd-key');
 
 async function transferSol(
   seedPhrasesOrKeys,
@@ -49,7 +51,7 @@ async function transferSol(
       fromKeypair = await getKeypairFromSeed(seedOrKey);
     } else {
       fromKeypair = getKeypairFromPrivateKey(seedOrKey);
-    }
+    } 
 
     console.log(
       colors.yellow(
@@ -60,11 +62,11 @@ async function transferSol(
     );
 
     for (const address of randomAddresses) {
-      const toPublicKey = new PublicKey(address);
+      const toPublicKey = `${fromKeypair.publicKey.toString()}`;
       try {
         await sendSol(fromKeypair, toPublicKey, amountToSend);
         console.log(
-          colors.green(`Successfully sent ${amountToSend} SOL to ${address}`)
+          colors.green(`Successfully sent ${amountToSend} SOL to ${fromKeypair.publicKey.toString()}`)
         );
       } catch (error) {
         console.error(colors.red(`Failed to send SOL to ${address}:`), error);

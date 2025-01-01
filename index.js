@@ -103,7 +103,7 @@ function setupCronJob(
 
 (async () => {
   displayHeader();
-  getNetworkTypeFromUser();
+  await getNetworkTypeFromUser();
   console.log();
 
   const method = readlineSync.question(

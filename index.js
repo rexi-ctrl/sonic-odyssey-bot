@@ -15,8 +15,6 @@ const {
 } = require('./src/solanaUtils');
 
 const { displayHeader, getNetworkTypeFromUser } = require('./src/displayUtils');
-const { Keypair } = require('@solana/web3.js');
-const { getPublicKey } = require('ed25519-hd-key');
 
 async function transferSol(
   seedPhrasesOrKeys,
@@ -51,7 +49,7 @@ async function transferSol(
       fromKeypair = await getKeypairFromSeed(seedOrKey);
     } else {
       fromKeypair = getKeypairFromPrivateKey(seedOrKey);
-    } 
+    }
 
     console.log(
       colors.yellow(

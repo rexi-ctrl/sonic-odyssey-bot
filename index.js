@@ -40,7 +40,7 @@ async function transferSol(
         'Failed to fetch minimum balance for rent exemption. Using default value.'
       )
     );
-    rentExemptionAmount = 0.001;
+    rentExemptionAmount = 0.0001;
   }
 
   for (const [index, seedOrKey] of seedPhrasesOrKeys.entries()) {
@@ -144,9 +144,9 @@ function setupCronJob(
   let amountToSend;
   do {
     const amountInput = readlineSync.question(
-      'Enter the amount of SOL to send (default is 0.001 SOL): '
+      'Enter the amount of SOL to send (default is 0.0001 SOL): '
     );
-    amountToSend = amountInput ? parseFloat(amountInput) : 0.001;
+    amountToSend = amountInput ? parseFloat(amountInput) : 0.0001;
 
     if (isNaN(amountToSend)) {
       console.log(colors.red('Invalid amount specified.'));
